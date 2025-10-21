@@ -2,12 +2,14 @@
 <NavbarContent />
 <HeroContent />
 <HomeCard />
+<JobListing />
 </template>
 
 <script setup>
 import NavbarContent from './components/NavbarContent.vue'
 import HeroContent from './components/HeroContent.vue'
 import HomeCard from './components/HomeCard.vue'
+import JobListing from './components/JobListing.vue'
 
 </script>
 
