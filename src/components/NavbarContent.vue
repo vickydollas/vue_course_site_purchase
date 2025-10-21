@@ -57,8 +57,17 @@ body{
   margin: 20px 50px 0 0;
 }
 .nav2 a{
+  color: #147234;
+  background-color: #ddd;
   text-decoration: none;
-  color: white;
+  padding: 10px;
+  border-radius: 15px;
   font-size: 25px;
+}
+.nav2 a:hover{
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #ddd;
+  background-color: #147234;
 }
 </style>
