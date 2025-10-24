@@ -1,24 +1,36 @@
 <template>
     <div class="container">
         <div class="container1">
-            <h3>{{ job.type }}</h3>
-            <h2>{{ job.title}}</h2>
-            <p>{{job.description}}</p>
-            <p>{{ job.salary }}</p>
+            <h3>{{ props.job.type }}</h3>
+            <h2>{{ props.job.title}}</h2>
+            <p>{{ truncatedDescription }} <span class="view-more" @click="toggleFullDescription">{{ showFullDescription ? 'less' : 'more' }}</span></p>
+            <p>{{ props.job.salary }}</p>
             <div>
-                <p>{{ job.location }}</p>
-                <a href="#" class="button">Read more</a>
+                <p>{{ props.job.location }}</p>
+                <a :href="'/job/' + props.job.id" class="button">Read more</a>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, ref, computed } from 'vue'
 
-defineProps({
+const props = defineProps({
     job: Object
 })
+const showFullDescription = ref(false)
+const truncatedDescription = computed(() => {
+    let description = props.job.description
+    if (!showFullDescription.value) {
+        description = description.substring(0, 90) + '...'
+    }
+    return description
+})
+
+const toggleFullDescription = () => {
+    showFullDescription.value = !showFullDescription.value
+}
 </script>
 
 <style>
@@ -64,5 +76,9 @@ defineProps({
     padding: 30px;
     border-radius: 20px;
     min-height: 15vh;
+}
+.view-more{
+    text-decoration: underline;
+    cursor: pointer;
 }
 </style>

@@ -2,11 +2,11 @@
     <div class="main-container">
         <h1>Browse Jobs</h1>
         <div class="container2">
-            <JobListingCard class="details" v-for="job in jobs.slice(0, limit || jobs)" :key="job.id" :job="job"/>
+            <JobListingCard class="details" v-for="job in jobs.slice(0, limit || jobs.length)" :key="job.id" :job="job"/>
         </div>
     </div>
     <div v-if="showButton" class="container3">
-        <a href="/" class="showbtn">View All jobs</a>
+        <a href="/jobs" class="showbtn">View All jobs</a>
     </div>
 </template>
 
@@ -52,7 +52,6 @@ defineProps({
     /* margin: 0 auto; */
 }
 .container3{
-    width: 80%;
     margin: 0 auto 50px auto;
 }
 </style>

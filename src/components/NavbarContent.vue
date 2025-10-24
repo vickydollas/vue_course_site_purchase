@@ -5,9 +5,9 @@
       <a href="">Vue Jobs</a>
     </div>
     <ul class="nav2">
-      <li><a href="">Home</a></li>
-      <li><a href="">Jobs</a></li>
-      <li><a href="">Add jobs</a></li>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="/jobs">Jobs</router-link></li>
+      <li><router-link to="/jobs/add">Add jobs</router-link></li>
     </ul>
   </nav>
 
@@ -15,6 +15,7 @@
 
 <script setup>
 import logo from '../assets/logo.png'
+import { RouterLink } from 'vue-router'
 </script>
 
 <style>

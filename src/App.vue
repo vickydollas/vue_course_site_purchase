@@ -1,16 +1,11 @@
 <template>
 <NavbarContent />
-<HeroContent />
-<HomeCard />
-<JobListing :limit="3" :showButton="true"/>
+<RouterView />
 </template>
 
 <script setup>
 import NavbarContent from './components/NavbarContent.vue'
-import HeroContent from './components/HeroContent.vue'
-import HomeCard from './components/HomeCard.vue'
-import JobListing from './components/JobListing.vue'
-
+import { RouterView } from 'vue-router'
 </script>
 
 <style>
