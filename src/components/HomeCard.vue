@@ -3,18 +3,19 @@
     <CardContent bg="box1">
         <h1>For Developers</h1>
         <p>Browse our view jobs and start your career today</p>
-        <a href=""><button>Browse jobs</button></a>
+        <router-link to="/jobs"><button>Browse jobs</button></router-link>
     </CardContent>
     <CardContent bg="box2">
         <h1>For Employers</h1>
         <p>List your job to find the perfect developer for the role</p>
-        <a href=""><button>Browse jobs</button></a>
+        <router-link to="/jobs/add"><button>Add jobs</button></router-link>
      </CardContent>
   </div>
 </template>
 
 <script setup>
 import CardContent from "./CardContent.vue";
+import { RouterLink } from 'vue-router'
 </script>
 
 <style>
@@ -47,8 +48,9 @@ import CardContent from "./CardContent.vue";
     margin: 10px 0 15px 20px;
     cursor: pointer;
 }
+.box2 > a > button{ background-color: #32C969;}
 .box1 > a > button:hover, .box2 > a > button:hover{
-    transform: scale(1.05); /* Scales up by 5% */
+    transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #ddd;
     color: black;

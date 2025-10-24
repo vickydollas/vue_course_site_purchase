@@ -6,13 +6,14 @@
         </div>
     </div>
     <div v-if="showButton" class="container3">
-        <a href="/jobs" class="showbtn">View All jobs</a>
+        <router-link to="/jobs" class="showbtn">View All jobs</router-link>
     </div>
 </template>
 
 <script setup>
 import jobData from './jobs.json'
 import { ref, defineProps } from 'vue'
+import { RouterLink } from 'vue-router'
 import JobListingCard from './JobListingCard.vue'
 
 const jobs = ref(jobData.jobs)

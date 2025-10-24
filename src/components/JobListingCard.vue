@@ -7,7 +7,7 @@
             <p>{{ props.job.salary }}</p>
             <div>
                 <p>{{ props.job.location }}</p>
-                <a :href="'/job/' + props.job.id" class="button">Read more</a>
+                <router-link :to="'/jobs/' + props.job.id" class="button">Read more</router-link>
             </div>
         </div>
     </div>
@@ -15,6 +15,7 @@
 
 <script setup>
 import { defineProps, ref, computed } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const props = defineProps({
     job: Object
