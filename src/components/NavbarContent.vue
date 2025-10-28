@@ -5,8 +5,8 @@
       <a href="">Vue Jobs</a>
     </div>
     <ul class="nav2">
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/jobs">Jobs</router-link></li>
+      <li><router-link to="/" :class="[{ 'active-status' : isActive('/')}, 'closed-status']">Home</router-link></li>
+      <li><router-link to="/jobs" >Jobs</router-link></li>
       <li><router-link to="/jobs/add">Add jobs</router-link></li>
     </ul>
   </nav>
@@ -15,7 +15,13 @@
 
 <script setup>
 import logo from '../assets/logo.png'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
+const route = useRoute()
+
+const isActive = (routePath) => {
+  return route.path === routePath
+}
+
 </script>
 
 <style>
@@ -70,5 +76,11 @@ body{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: #ddd;
   background-color: #147234;
+}
+.active-status{
+  background-color: red;
+}
+.closed-status{
+  background-color: yellow;
 }
 </style>
