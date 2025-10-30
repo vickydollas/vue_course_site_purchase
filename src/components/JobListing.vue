@@ -11,12 +11,21 @@
 </template>
 
 <script setup>
-import jobData from './jobs.json'
-import { ref, defineProps } from 'vue'
+// import jobData from './jobs.json'
+import { ref, defineProps, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import JobListingCard from './JobListingCard.vue'
 
-const jobs = ref(jobData.jobs)
+const jobs = ref([])
+onMounted(async () => {
+    try {
+        const response = await fetch('http://localhost:4000/jobs')
+        jobs.value = await response.json()
+    } catch (error) {
+        console.log('error loading', error)
+    }
+})
+
 defineProps({
     limit: Number,
     showButton: {

@@ -7,7 +7,9 @@
             <p>{{ props.job.salary }}</p>
             <div>
                 <p>{{ props.job.location }}</p>
-                <router-link :to="'/jobs/:id' + props.job.id" class="button">Read more</router-link>
+                <!-- <router-link :to="'/jobs/:id' + props.job.id" class="button">Read more</router-link> -->
+                <router-link :to="`/jobs/${props.job.id}`" class="button">Read more</router-link>
+                <!-- <router-link :to="'/jobs/:id' + props.job.id" class="button">Read more</router-link> -->
             </div>
         </div>
     </div>

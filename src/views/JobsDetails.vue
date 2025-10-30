@@ -1,29 +1,51 @@
 <script setup>
+import { reactive, onMounted, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+
+// const jobId = route.params.id
+const jobId = route.params.id 
+const state = reactive({
+    jobs: null,
+    isLoading: true
+})
+const jobData = computed(() => state.jobs)
+onMounted(async () => {
+    try {
+        const response = await fetch(`http://localhost:4000/jobs/${jobId}`)
+        if(!response){
+            throw new Error('Page not loading')
+        }
+        state.jobs = await response.json()
+    } catch (error) {
+        console.log('error loading, try again', error)
+    }
+    finally{
+        state.isLoading = false
+    }
+})
 </script>
 
 <template>
-    <div class="jobfull">
+    <div v-if="jobData" class="jobfull">
         <div class="jobfull-1">
             <div class="job-description1">
-                <h3>Full - Time</h3>
-                <h1>Senior Vue Developer</h1>
-                <i>Boston, MA</i>
+                <h3>{{ state.jobs.type }}</h3>
+                <h1>{{ state.jobs.title }}</h1>
+                <i>{{ state.jobs.location }}</i>
             </div>
             <div class="job-description2">
                 <h2>Job Description</h2>
-                <p>We are seeking a talented Front-End Develope to join our team in Boston, MA. 
-                    The idea candidate will have strong skills in HTML, CSS and Javascript with experience 
-                    working with nodern Javascript frameworks such as Vue and Angular
-                </p>
+                <p>{{ state.jobs.description }}</p>
                 <h2>Salary</h2>
-                <h4>$70k - $80k / year</h4>
+                <h4>{{ state.jobs.salary }}</h4>
             </div>
         </div>
         <div class="jobfull-2">
             <div class="job-description3">
                 <h3>Company info</h3>
-                <h2>NewTek Solutions</h2>
+                <h2>{{ state.jobs.company.name }}</h2>
                 <p>
                     NewTek Solutions is a leading technology company speecializing in web development 
                     and digital solutions. We pride ourselves on delivering high-quality products and 
