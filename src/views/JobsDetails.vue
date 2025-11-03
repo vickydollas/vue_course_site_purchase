@@ -52,9 +52,9 @@ onMounted(async () => {
                     services to our client while fostering a collaborative and innovative work environment. 
                 </p>
                 <h5>Contact Email:</h5>
-                <i>contact@gmail.com</i>
+                <i>{{ state.jobs.company.contactEmail }}</i>
                 <h5>Contact Phone:</h5>
-                <i>555-555-5555</i>
+                <i>{{ state.jobs.company.contactPhone }}</i>
             </div>
             <div class="job-description4">
                 <h3>Manage Job</h3>
