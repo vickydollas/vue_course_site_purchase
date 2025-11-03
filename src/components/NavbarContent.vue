@@ -40,7 +40,7 @@ body{
 .nav-img{
   background-color: white;
   width: auto;
-  height: 70px;
+  height: 60px;
   border-radius: 50px;
   margin: auto;
 }
@@ -51,7 +51,7 @@ body{
 }
 .nav1 a{
   color: white;
-  font-size: 30px;
+  font-size: 23px;
   text-decoration: none;
   align-items: center;
   padding: 25px;
@@ -67,9 +67,9 @@ body{
   color: #147234;
   background-color: #ddd;
   text-decoration: none;
-  padding: 10px;
+  padding: 12px;
   border-radius: 15px;
-  font-size: 25px;
+  font-size: 15px;
 }
 .nav2 a:hover{
   transform: scale(1.05);

@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-// import jobData from './jobs.json'
 import { ref, defineProps, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import JobListingCard from './JobListingCard.vue'
@@ -42,7 +41,6 @@ defineProps({
     min-height: 40vh;
 }
 .main-container h1{
-    /* color: red; */
     padding-top: 20px;
 }
 .container2{
@@ -51,13 +49,13 @@ defineProps({
     gap: 30px 30px;
     margin: 20px 50px 40px 50px;
 }
-.container3 a{
+.showbtn{
     text-decoration: none;
     background-color: black;
     color: #ddd;
-    min-width: 200px;
-    height: 10vh;
-    padding: 25px 30em;
+    min-width: 100px;
+    /* height: 8vh; */
+    padding: 18px 18em;
     border-radius: 20px;
     /* margin: 0 auto; */
 }

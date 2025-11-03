@@ -36,15 +36,14 @@ import { RouterLink } from 'vue-router'
     width: 45%;
     min-height: 22vh;
 }
-.box1 h1, .box2 h1{ font-size: 45px; text-align: left; margin: 20px;}
-.box1 p, .box2 p{font-size: 22px; margin: 20px; text-align: left;}
+.box1 h1, .box2 h1{ font-size: 35px; text-align: left; margin: 20px;}
+.box1 p, .box2 p{font-size: 17px; margin: 20px; text-align: left;}
 .box1 > a > button, .box2 > a > button{
-    width: 15%; 
-    height: 75px;
+    padding: 15px;
     border-radius: 10px;
     background-color: black;
     color: #ddd;
-    font-size: 20px;
+    font-size: 10px;
     margin: 10px 0 15px 20px;
     cursor: pointer;
 }

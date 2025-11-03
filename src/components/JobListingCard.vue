@@ -49,17 +49,17 @@ const toggleFullDescription = () => {
 .container1 p{
     text-align: left;
     margin-bottom: 10px;
-    font-size: 19px;
+    font-size: 14px;
 }
 .button{
     text-decoration: none;
     color: #ffffff;
     background-color: #22C55E;
-    font-size: 20px;
+    font-size: 14px;
     padding: 15px;
     border-radius: 20px;
-    margin-right: 50px;
-    text-align: left;
+    /* margin-right: 50px; */
+    /* text-align: left; */
 }
 .button:hover{
     transform: scale(1.05);

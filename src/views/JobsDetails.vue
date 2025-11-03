@@ -67,7 +67,7 @@ onMounted(async () => {
 <style>
 .jobfull{
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 2fr 1fr;
     gap: 30px;
     background-color: #EBFDF0;
 }
@@ -88,8 +88,8 @@ onMounted(async () => {
     text-align: left;
     padding: 10px;
 }
-.job-description1 h1{ font-weight: 3000; font-size: 45px;}
-.job-description1 h3{ font-weight: 400; font-size: 20;}
+.job-description1 h1{ font-weight: 3000; font-size: 30px;}
+.job-description1 h3{ font-weight: 400; font-size: 14px;}
 .job-description1 i{
     display: block;
     padding: 10px;
@@ -101,8 +101,8 @@ onMounted(async () => {
     padding: 15px;
 }
 .job-description2 h2{ color: #5C866F; font-weight: 1000;}
-.job-description2 p{ font-weight: 700; font-size: 18px;}
-.job-description2 h4{ font-weight: 800;}
+.job-description2 p{ font-weight: 700; font-size: 14px;}
+.job-description2 h4{ font-weight: 800; font-size: 10px;}
 
 /* .jobfull-2 */
 
@@ -116,25 +116,25 @@ onMounted(async () => {
     text-align: left;
     padding: 15px;
 }
-.job-description3 p { font-size: 20px; font-weight: 600; line-height: 30px;}
-.job-description3 h3{ font-size: 26px; font-weight: 800;}
-.job-description3 h2{ font-size: 35px; font-weight: 500;}
-.job-description3 h5{ font-size: 30px; font-weight: 600;}
-.job-description3 i{ display: block; font-style: normal; font-size: 20px; font-weight: 800; background-color: #D5F9E1; margin: 20px;}
+.job-description3 p { font-size: 14px; font-weight: 600; line-height: 30px;}
+.job-description3 h3{ font-size: 20px; font-weight: 800;}
+.job-description3 h2{ font-size: 27px; font-weight: 500;}
+.job-description3 h5{ font-size: 20px; font-weight: 600;}
+.job-description3 i{ display: block; font-style: normal; font-size: 14px; font-weight: 800; background-color: #D5F9E1; margin: 20px;}
 
 /* .job-description4 */
 
 .job-description4 h3{
     text-align: left;
-    font-size: 27px;
+    font-size: 20px;
     font-weight: 800;
     padding: 15px;
 }
 .job-description4 button{
-    font-size: 20px;
+    font-size: 13px;
     color: #FFFFFF;
     font-weight: 600;
-    padding: 20px;
+    padding: 15px;
     display: block;
     margin: 20px auto;
     width: 80%;
