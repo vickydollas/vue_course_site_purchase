@@ -1,10 +1,10 @@
 <script setup>
+import axios from 'axios'
 import { reactive, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-// const jobId = route.params.id
 const jobId = route.params.id 
 const state = reactive({
     jobs: null,
@@ -13,11 +13,11 @@ const state = reactive({
 const jobData = computed(() => state.jobs)
 onMounted(async () => {
     try {
-        const response = await fetch(`http://localhost:4000/jobs/${jobId}`)
+        const response = await axios.get(`http://localhost:4000/jobs/${jobId}`)
         if(!response){
             throw new Error('Page not loading')
         }
-        state.jobs = await response.json()
+        state.jobs = await response.data    
     } catch (error) {
         console.log('error loading, try again', error)
     }

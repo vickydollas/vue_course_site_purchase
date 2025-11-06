@@ -7,7 +7,7 @@
     <ul class="nav2">
       <li><router-link to="/" :class="[{ 'active-status' : isActive('/')}, 'closed-status']">Home</router-link></li>
       <li><router-link to="/jobs" >Jobs</router-link></li>
-      <li><router-link to="/jobs/add">Add jobs</router-link></li>
+      <li><router-link to="/add-jobs">Add jobs</router-link></li>
     </ul>
   </nav>
 
