@@ -1,7 +1,10 @@
 <script setup>
-import { reactive, onMounted } from 'vue'
+import { reactive, ref } from 'vue'
 import axios from 'axios'
+import router from '@/router'
+import { useToast } from 'vue-toastification'
 
+const isLoading = ref(true)
 const details = reactive({
     title: '',
     type: '',
@@ -15,27 +18,29 @@ const details = reactive({
         contactPhone: ''
     }
 })
+const toast = useToast()
 // const jobDatas = computed(() => states.jobs)
-
-const states = reactive({
-    jobs: '',
-    onLoading: true
-})
-onMounted(async () => {
+async function submitForm() {
      try {
         const response = await axios.post('http://localhost:4000/jobs', details)
-        
+        toast.success('Job successfully added')
+        const newJobId = response.data.id
+        router.push(`/jobs/${newJobId}`)
     } catch (error) {
-        console.log('error loading, try again', error)
+        console.log('error loading, try again', error.message)
+        toast.error('job not added')
     }
-})
+    finally{
+        isLoading.value = false
+    }
+}
 
 </script>
 
 <template>
 <div>
     <!-- <p>{{ states.jobs }}</p> -->
-    <form @submit="submitForm">
+    <form @submit.prevent="submitForm">
         <div>
             <label>Title</label>
             <input type="text" v-model="details.title">
