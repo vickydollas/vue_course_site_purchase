@@ -5,5 +5,5 @@ module.exports = defineConfig({
   // This ensures that all assets (CSS, JS, images) are loaded relative 
   // to the index.html file, solving the 404 issue on network deployment 
   // (especially when hosted in a subdirectory).
-  publicPath: '/my-project/' 
+  // publicPath: '/my-project/' 
 })
