@@ -5,9 +5,7 @@
             <JobListingCard class="details" v-for="job in jobs.slice(0, limit || jobs.length)" :key="job.id" :job="job"/>
         </div>
     </div>
-    <div v-if="showButton" class="container3">
-        <router-link to="/jobs" class="showbtn">View All jobs</router-link>
-    </div>
+    <router-link to="/jobs" class="showbtn" v-if="showButton">View All jobs</router-link>
 </template>
 
 <script setup>
@@ -53,13 +51,15 @@ defineProps({
     text-decoration: none;
     background-color: black;
     color: #ddd;
-    min-width: 100px;
-    /* height: 8vh; */
-    padding: 18px 18em;
+    padding: 18px 0;
     border-radius: 20px;
-    /* margin: 0 auto; */
+    max-width: 50%;
+    display: block;
+    margin: 0 auto 10px auto;
 }
-.container3{
-    margin: 0 auto 50px auto;
+@media (max-width: 768px) {
+    .container2{
+        grid-template-columns: 1fr;
+    }
 }
 </style>

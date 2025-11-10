@@ -4,8 +4,18 @@
       <img :src="logo" class="nav-img">
       <a href="">Vue Jobs</a>
     </div>
+    <button @click="toggleMenu" class="hamburger-button">
+        <span v-if="dropdown" class="close-icon">✕</span>
+        <span v-else class="open-icon">☰</span>
+    </button>
+    
     <ul class="nav2">
       <li><router-link to="/" :class="[{ 'active-status' : isActive('/')}, 'closed-status']">Home</router-link></li>
+      <li><router-link to="/jobs" >Jobs</router-link></li>
+      <li><router-link to="/add-jobs">Add jobs</router-link></li>
+    </ul>
+    <ul v-if="dropdown" class="dropdown">
+      <li><router-link to="/" >Home</router-link></li>
       <li><router-link to="/jobs" >Jobs</router-link></li>
       <li><router-link to="/add-jobs">Add jobs</router-link></li>
     </ul>
@@ -15,19 +25,52 @@
 
 <script setup>
 import logo from '../assets/logo.png'
+import { ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 const route = useRoute()
+const dropdown = ref(false)
+const toggleMenu = () => {
+  dropdown.value = !dropdown.value
 
+}
 const isActive = (routePath) => {
   return route.path === routePath
 }
 
 </script>
 
-<style>
+<style scoped>
+.dropdown{
+  background-color: #D5F9E1;
+  padding: 10px;
+  position: relative;
+  top: 30px;
+  min-width: 40%;
+  min-height: 28vh;
+  right: 20px;
+  border-radius: 20px;
+}
+.dropdown li{
+  list-style: none;
+  font-size: 20px;
+  padding: 15px 0;
+  margin: 7px 0;
+  color: #ddd;
+  background-color: #147234;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.dropdown a{
+  text-decoration: none;
+}
 body{
   margin: 0;
   padding: 0;
+  /* width: 100%; */
+}
+.hamburger-button{
+  display: none;
+  cursor: pointer;
 }
 .nav-bar{
   background-color: #147234;
@@ -82,5 +125,15 @@ body{
 }
 .closed-status{
   background-color: yellow;
+}
+@media (max-width: 768px) {
+  .nav2{
+    display: none;
+  }
+  .hamburger-button{
+  display: block;
+  font-size: 30px;
+  margin: 0 20px 0 0;
+}
 }
 </style>

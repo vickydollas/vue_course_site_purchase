@@ -27,13 +27,13 @@ import { RouterLink } from 'vue-router'
 .box1{
     background-color: #F0F3F2;
     border-radius: 20px;
-    width: 45%;
+    min-width: 45%;
     min-height: 22vh;
 }
 .box2{
     background-color: #D5F9E1;
     border-radius: 20px;
-    width: 45%;
+    min-width: 45%;
     min-height: 22vh;
 }
 .box1 h1, .box2 h1{ font-size: 35px; text-align: left; margin: 20px;}
@@ -56,4 +56,10 @@ import { RouterLink } from 'vue-router'
 }
 .box1 a, .box2 a{display: block; text-align: left;}
 /* .box2{background-color: #D5F9E1;} */
+@media (max-width: 768px) {
+    .home-card{
+        display: block;
+        margin: 20px 5px 0 5px;
+    }
+}
 </style>

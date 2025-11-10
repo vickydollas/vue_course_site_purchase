@@ -28,7 +28,7 @@ body{
 }
 .hero{
   background-color: #147234;
-  height: 27vh;
+  min-height: 27vh;
   align-content: center;
 }
 .hero h1{
@@ -39,5 +39,11 @@ body{
 .hero p{
   color: white;
   font-size: 20px;
+}
+@media (max-width: 768px) {
+  .hero h1{
+    font-size: 37px;
+    padding: 5px;
+  }
 }
 </style>

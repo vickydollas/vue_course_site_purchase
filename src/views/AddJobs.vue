@@ -24,8 +24,8 @@ async function submitForm() {
      try {
         const response = await axios.post('http://localhost:4000/jobs', details)
         toast.success('Job successfully added')
-        const newJobId = response.data.id
-        router.push(`/jobs/${newJobId}`)
+        response.data.id
+        router.push(`/jobs/`)
     } catch (error) {
         console.log('error loading, try again', error.message)
         toast.error('job not added')

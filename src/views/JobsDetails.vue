@@ -1,9 +1,12 @@
 <script setup>
 import axios from 'axios'
 import { reactive, onMounted, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
 const route = useRoute()
+const router = useRouter()
+const toast = useToast()
 
 const jobId = route.params.id 
 const state = reactive({
@@ -11,6 +14,16 @@ const state = reactive({
     isLoading: true
 })
 const jobData = computed(() => state.jobs)
+const deleteJobs = async () =>{
+    try {
+        await axios.delete(`http://localhost:4000/jobs/${jobId}`)
+        toast.success('Jobs successfully delet')
+        router.push('/jobs/')
+    } catch (error) {
+        console.log('Jobs not successfully deleted', error)
+        toast.error('Error, jobs not deleted')
+    }
+}
 onMounted(async () => {
     try {
         const response = await axios.get(`http://localhost:4000/jobs/${jobId}`)
@@ -59,7 +72,7 @@ onMounted(async () => {
             <div class="job-description4">
                 <h3>Manage Job</h3>
                 <button class="btn-1-color">Edit Job</button>
-                <button class="btn-2-color">Delete Job</button>
+                <button @click="deleteJobs" class="btn-2-color">Delete Job</button>
             </div>
         </div>
     </div>
@@ -106,7 +119,7 @@ onMounted(async () => {
 
 /* .jobfull-2 */
 
-.jobfull-2{ margin-right: 40px;}
+/* .jobfull-2{ margin-right: 40px;} */
 .job-description3, .job-description4{
     background-color: #FFFFFF;
     margin: 30px;
@@ -151,5 +164,10 @@ onMounted(async () => {
     color: #EA3A39;
     background-color: #EBFDF0;
     transition: transform 1.8s ease-in-out
+}
+@media (max-width: 768px) {
+    .jobfull{
+        display: block;
+    }
 }
 </style>
