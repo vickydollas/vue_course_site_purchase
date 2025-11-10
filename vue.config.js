@@ -1,9 +1,9 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
-  // FIX: Sets the base path to relative ('./') instead of absolute ('/').
-  // This ensures that all assets (CSS, JS, images) are loaded relative 
-  // to the index.html file, solving the 404 issue on network deployment 
-  // (especially when hosted in a subdirectory).
-  // publicPath: '/my-project/' 
+  // 🔑 THE FIX FOR GITHUB PAGES:
+  // Sets the base path for assets to match the subdirectory name on GitHub Pages.
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/vue_course_site_purchase/' // <-- REPLACE THIS with your GitHub repository name
+    : '/'
 })
