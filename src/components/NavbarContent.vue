@@ -40,13 +40,14 @@ const isActive = (routePath) => {
 </script>
 
 <style scoped>
+
 .dropdown{
   background-color: #D5F9E1;
   padding: 10px;
   position: relative;
   top: 30px;
-  min-width: 40%;
-  min-height: 28vh;
+  min-width: 30%;
+  min-height: 25vh;
   right: 20px;
   border-radius: 20px;
 }
