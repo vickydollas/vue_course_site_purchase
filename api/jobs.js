@@ -1,17 +1,44 @@
-// api/jobs.js - This code runs on Vercel's server when requested
 
-// 1. Load the JSON file into memory. Vercel's environment supports 'require'.
-const jobsData = require('./jobs2.json');
+// const jobsData = require('./jobs2.json');
 
-// 2. Define the handler function that Vercel calls.
-// Vercel passes the request (req) and response (res) objects.
+
+// module.exports = (req, res) => {
+//   res.status(200);
+
+//   res.setHeader('Content-Type', 'application/json');
+
+//   res.send(jobsData);
+// };
+// api/jobs/[id].js
+
+const jobsData = require('./jobs2.json'); // Import the full data set
+
 module.exports = (req, res) => {
-  // Set the HTTP status code to 200 (Success)
-  res.status(200);
-
-  // Set the Content-Type header to tell the browser it's a JSON response
-  res.setHeader('Content-Type', 'application/json');
-
-  // Send the actual JSON data back to the user
-  res.send(jobsData);
+    const jobId = parseInt(req.query.id); // Get the ID from the URL and convert to a number
+    
+    // --- Shared Logic for GET and DELETE ---
+    if (req.method === 'DELETE') {
+        // ... (existing DELETE logic remains here, returning 204)
+        console.log(`Simulating deletion of job ID: ${jobId}`);
+        res.status(204).send();
+        
+    } else if (req.method === 'GET') {
+        // --- Single Job Fetch Logic ---
+        
+        // 1. Find the job in the array (assuming your jobs2.json is an array or has a jobs array)
+        const allJobs = Array.isArray(jobsData) ? jobsData : jobsData.jobs;
+        const job = allJobs.find(j => j.id === jobId); 
+        
+        if (job) {
+            // 2. Return the found job data
+            res.status(200).json(job);
+        } else {
+            // 3. If job is not found
+            res.status(404).send({ message: `Job with ID ${jobId} not found.` });
+        }
+        
+    } else {
+        // Handle unsupported methods
+        res.status(405).send(`Method ${req.method} not allowed.`);
+    }
 };

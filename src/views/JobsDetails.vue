@@ -26,7 +26,7 @@ const deleteJobs = async () =>{
 }
 onMounted(async () => {
     try {
-        const response = await axios.get(`http://localhost:4000/jobs/${jobId}`)
+        const response = await axios.get(`/api/${jobId}`)
         if(!response){
             throw new Error('Page not loading')
         }
