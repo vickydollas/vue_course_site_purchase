@@ -2,7 +2,7 @@
 // Returns the full list of jobs.
 
 // NOTE: Path assumes jobs2.json is in the /api/ folder.
-const jobsData = require('../../jobs2.json'); 
+const jobsData = require('../jobs2.json'); 
 
 module.exports = (req, res) => {
     if (req.method === 'GET') {

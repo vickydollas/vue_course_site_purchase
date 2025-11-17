@@ -2,7 +2,7 @@
 // Handles fetching a single job or simulating deletion.
 
 // NOTE: Path assumes jobs2.json is in the /api/ folder.
-const jobsData = require('../../jobs2.json');
+const jobsData = require('../jobs2.json');
 
 module.exports = (req, res) => {
     // Vercel automatically extracts the ID
