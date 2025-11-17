@@ -113,7 +113,7 @@ body{
   text-decoration: none;
   padding: 12px;
   border-radius: 15px;
-  font-size: 15px;
+  font-size: 45px;
 }
 .nav2 a:hover{
   transform: scale(1.05);
@@ -133,8 +133,14 @@ body{
   }
   .hamburger-button{
   display: block;
-  font-size: 30px;
+  font-size: 10px;
   margin: 0 20px 0 0;
-}
+  }
+  .dropdown li{
+    font-size: 8px;
+  }
+  .dropdown{
+    min-height: 15vh;
+  }
 }
 </style>
