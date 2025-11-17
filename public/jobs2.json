@@ -1,5 +1,4 @@
-{
-  "jobs": [
+[
     {
       "id": "2",
       "title": "Front-End Engineer (Vue)",
@@ -70,5 +69,4 @@
         "contactPhone": "555-555-5555"
       }
     }
-  ]
-}
+]

@@ -10,13 +10,13 @@ const toast = useToast()
 
 const jobId = route.params.id 
 const state = reactive({
-    jobs: null,
+    job: null,
     isLoading: true
 })
-const jobData = computed(() => state.jobs)
+const jobData = computed(() => state.job)
 const deleteJobs = async () =>{
     try {
-        await axios.delete(`/api/jobs/${jobId}`)
+        await axios.delete(`/jobs2.json/${jobId}`)
         toast.success('Jobs successfully delet')
         router.push('/jobs/')
     } catch (error) {
@@ -25,16 +25,57 @@ const deleteJobs = async () =>{
     }
 }
 onMounted(async () => {
+    // try {
+    //     const response = await axios.get(`/jobs2.json/${jobId}`)
+    //     if(!response){
+    //         throw new Error('Page not loading')
+    //     }
+    //     state.jobs = await response.data    
+    // } catch (error) {
+    //     console.log('error loading, try again', error)
+    // }
+    // finally{
+    //     state.isLoading = false
+    // }
+    console.log(`DEBUG: Looking for Job ID: ${jobId} (Type: ${typeof jobId})`);
+
     try {
-        const response = await axios.get(`/api/${jobId}`)
-        if(!response){
-            throw new Error('Page not loading')
+        // 1. Fetch the entire jobs2.json file (the whole list)
+        const response = await axios.get('/jobs2.json')
+        
+        if(!response || !response.data){
+            throw new Error('No data received from jobs2.json')
         }
-        state.jobs = await response.data    
+        
+        // Ensure data is the pure array (not wrapped in a 'jobs' object)
+        const allJobs = Array.isArray(response.data) ? response.data : response.data.jobs;
+        
+        // 2. DEBUG: Log the array of all jobs
+        console.log('DEBUG: Fetched all jobs successfully. Total:', allJobs.length);
+        
+        // 3. Find the specific job using client-side JavaScript
+        // FIX: Use == (loose equality) instead of ===. This is crucial if 
+        // the ID in the JSON file is stored as a string, e.g., "1" instead of 1.
+        const foundJob = allJobs.find(job => job.id == jobId)
+        
+        // 4. DEBUG: Log the result of the find operation
+        console.log('DEBUG: Job found result:', foundJob);
+
+        if (foundJob) {
+            // Assign the found job object to state.job
+            state.job = foundJob
+        } else {
+            // If job not found, log error and notify user (optional redirect)
+            console.error(`ERROR: Job with ID ${jobId} not found in data.`);
+            toast.error('Job not found!');
+            // router.push('/not-found') 
+        }
+        
     } catch (error) {
-        console.log('error loading, try again', error)
-    }
-    finally{
+        console.error('CRITICAL ERROR loading job details:', error)
+        toast.error('Error loading job details. Check console.')
+    } finally {
+        // Set loading state to false regardless of success or failure
         state.isLoading = false
     }
 })
@@ -44,30 +85,30 @@ onMounted(async () => {
     <div v-if="jobData" class="jobfull">
         <div class="jobfull-1">
             <div class="job-description1">
-                <h3>{{ state.jobs.type }}</h3>
-                <h1>{{ state.jobs.title }}</h1>
-                <i>{{ state.jobs.location }}</i>
+                <h3>{{ state.job.type }}</h3>
+                <h1>{{ state.job.title }}</h1>
+                <i>{{ state.job.location }}</i>
             </div>
             <div class="job-description2">
                 <h2>Job Description</h2>
-                <p>{{ state.jobs.description }}</p>
+                <p>{{ state.job.description }}</p>
                 <h2>Salary</h2>
-                <h4>{{ state.jobs.salary }}</h4>
+                <h4>{{ state.job.salary }}</h4>
             </div>
         </div>
         <div class="jobfull-2">
             <div class="job-description3">
                 <h3>Company info</h3>
-                <h2>{{ state.jobs.company.name }}</h2>
+                <h2>{{ state.job.company.name }}</h2>
                 <p>
                     NewTek Solutions is a leading technology company speecializing in web development 
                     and digital solutions. We pride ourselves on delivering high-quality products and 
                     services to our client while fostering a collaborative and innovative work environment. 
                 </p>
                 <h5>Contact Email:</h5>
-                <i>{{ state.jobs.company.contactEmail }}</i>
+                <i>{{ state.job.company.contactEmail }}</i>
                 <h5>Contact Phone:</h5>
-                <i>{{ state.jobs.company.contactPhone }}</i>
+                <i>{{ state.job.company.contactPhone }}</i>
             </div>
             <div class="job-description4">
                 <h3>Manage Job</h3>

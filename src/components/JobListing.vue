@@ -16,14 +16,8 @@ import JobListingCard from './JobListingCard.vue'
 const jobs = ref([])
 onMounted(async () => {
     try {
-        const response = await fetch('/api/jobs')
-        const data = await response.json()
-        if (Array.isArray(data.jobs)) {
-            jobs.value = data.jobs
-        }
-        else {
-            jobs.value
-        }
+        const response = await fetch('/jobs2.json')
+        jobs.value = await response.json()
     } catch (error) {
         console.log('error loading', error)
     }

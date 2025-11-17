@@ -22,7 +22,7 @@ const toast = useToast()
 // const jobDatas = computed(() => states.jobs)
 async function submitForm() {
      try {
-        const response = await axios.post('/api/jobs', details)
+        const response = await axios.post('/jobs2.json', details)
         toast.success('Job successfully added')
         response.data.id
         router.push(`/jobs/`)

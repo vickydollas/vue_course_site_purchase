@@ -46,9 +46,9 @@ const isActive = (routePath) => {
   padding: 10px;
   position: relative;
   top: 30px;
-  min-width: 30%;
-  min-height: 25vh;
-  right: 20px;
+  width: 30%;
+  min-height: 21vh;
+  right: 10px;
   border-radius: 20px;
 }
 .dropdown li{
