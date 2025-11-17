@@ -17,7 +17,13 @@ const jobs = ref([])
 onMounted(async () => {
     try {
         const response = await fetch('/api/jobs')
-        jobs.value = await response.json()
+        const data = await response.json()
+        if (Array.isArray(data.jobs)) {
+            jobs.value = data.jobs
+        }
+        else {
+            jobs.value
+        }
     } catch (error) {
         console.log('error loading', error)
     }
