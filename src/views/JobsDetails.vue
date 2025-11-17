@@ -16,7 +16,7 @@ const state = reactive({
 const jobData = computed(() => state.jobs)
 const deleteJobs = async () =>{
     try {
-        await axios.delete(`http://localhost:4000/jobs/${jobId}`)
+        await axios.delete(`/api/jobs/${jobId}`)
         toast.success('Jobs successfully delet')
         router.push('/jobs/')
     } catch (error) {
