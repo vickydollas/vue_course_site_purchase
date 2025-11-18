@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios'
 import { reactive, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { useToast } from 'vue-toastification'
 
 const route = useRoute()
@@ -82,6 +82,9 @@ onMounted(async () => {
 </script>
 
 <template>
+    <div class="go-back-home">
+        <router-link to="/"><i class="pi pi-home" style="color: black"></i>Go to Home</router-link>
+    </div>
     <div v-if="jobData" class="jobfull">
         <div class="jobfull-1">
             <div class="job-description1">
@@ -206,6 +209,23 @@ onMounted(async () => {
     background-color: #EBFDF0;
     transition: transform 1.8s ease-in-out
 }
+/* go back home button  */
+.go-back-home{
+    background-color: #D5F9E1;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    /* margin: 0 0 0 10px; */
+}
+.go-back-home a{
+    text-decoration: none;
+    /* padding: 5px; */
+}
+.pi{
+    font-size: 20px;
+    margin-right: 10px;
+}
+/* mobile responsiveness */
 @media (max-width: 768px) {
     .jobfull{
         display: block;

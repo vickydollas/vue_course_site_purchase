@@ -6,6 +6,7 @@
 <script setup>
 import NavbarContent from './components/NavbarContent.vue'
 import { RouterView } from 'vue-router'
+import 'primeicons/primeicons.css'
 </script>
 
 <style>

@@ -14,12 +14,12 @@
       <li><router-link to="/jobs" >Jobs</router-link></li>
       <li><router-link to="/add-jobs">Add jobs</router-link></li>
     </ul>
-    <ul v-if="dropdown" class="dropdown">
-      <li><router-link to="/" >Home</router-link></li>
-      <li><router-link to="/jobs" >Jobs</router-link></li>
-      <li><router-link to="/add-jobs">Add jobs</router-link></li>
-    </ul>
   </nav>
+  <ul v-if="dropdown" class="dropdown">
+      <li><router-link to="/" @click="closeMenu" >Home</router-link></li>
+      <li><router-link to="/jobs" @click="closeMenu" >Jobs</router-link></li>
+      <li><router-link to="/add-jobs" @click="closeMenu">Add jobs</router-link></li>
+    </ul>
 
 </template>
 
@@ -28,11 +28,11 @@ import logo from '../assets/logo.png'
 import { ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 const route = useRoute()
-const dropdown = ref(false)
-const toggleMenu = () => {
+const dropdown = ref(false) // this is the state of the hamburger
+const toggleMenu = () => { // this func handles the toggle from false to true
   dropdown.value = !dropdown.value
-
 }
+const closeMenu = () => { dropdown.value = false} // this handles the closing of the hamburger after being clicked.
 const isActive = (routePath) => {
   return route.path === routePath
 }
@@ -42,24 +42,30 @@ const isActive = (routePath) => {
 <style scoped>
 
 .dropdown{
-  background-color: #D5F9E1;
-  padding: 10px;
-  position: relative;
-  top: 30px;
-  width: 30%;
-  min-height: 21vh;
-  right: 10px;
-  border-radius: 20px;
+    height: 90vh;
+    position: fixed;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 70px 5px 0 0;
+    top: 0;
+    width: 40%;
+    right: 0;
+    z-index: 9999;
+    border-radius: 20px;
+    transition: transform 2s ease-out;
 }
 .dropdown li{
   list-style: none;
   font-size: 20px;
   padding: 15px 0;
-  margin: 7px 0;
+  margin: 20px 0;
   color: #ddd;
-  background-color: #147234;
-  border-radius: 20px;
+  box-shadow: 0 0 0 1px #147234;
+  border-radius: 10px;
   cursor: pointer;
+}
+.dropdown li:hover{
+  background-color: #147234;
 }
 .dropdown a{
   text-decoration: none;
@@ -71,7 +77,6 @@ body{
 }
 .hamburger-button{
   display: none;
-  cursor: pointer;
 }
 .nav-bar{
   background-color: #147234;
@@ -113,7 +118,7 @@ body{
   text-decoration: none;
   padding: 12px;
   border-radius: 15px;
-  font-size: 45px;
+  font-size: 15px;
 }
 .nav2 a:hover{
   transform: scale(1.05);
@@ -133,14 +138,14 @@ body{
   }
   .hamburger-button{
   display: block;
-  font-size: 10px;
+  font-size: 15px;
   margin: 0 20px 0 0;
   }
   .dropdown li{
     font-size: 8px;
   }
   .dropdown{
-    min-height: 15vh;
+    overflow-y: auto;
   }
 }
 </style>
