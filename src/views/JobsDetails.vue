@@ -16,9 +16,12 @@ const state = reactive({
 const jobData = computed(() => state.job)
 const deleteJobs = async () =>{
     try {
-        await axios.delete(`/jobs2.json/${jobId}`)
-        toast.success('Jobs successfully delet')
-        router.push('/jobs/')
+        const confirm = window.confirm('Are you sure you want to delete?')
+        if (confirm){
+            await axios.delete(`/jobs2.json/${jobId}`)
+            toast.success('Jobs successfully delet')
+            router.push('/jobs/')
+        }
     } catch (error) {
         console.log('Jobs not successfully deleted', error)
         toast.error('Error, jobs not deleted')
@@ -37,7 +40,7 @@ onMounted(async () => {
     // finally{
     //     state.isLoading = false
     // }
-    console.log(`DEBUG: Looking for Job ID: ${jobId} (Type: ${typeof jobId})`);
+    // console.log(`DEBUG: Looking for Job ID: ${jobId} (Type: ${typeof jobId})`);
 
     try {
         // 1. Fetch the entire jobs2.json file (the whole list)
@@ -51,7 +54,7 @@ onMounted(async () => {
         const allJobs = Array.isArray(response.data) ? response.data : response.data.jobs;
         
         // 2. DEBUG: Log the array of all jobs
-        console.log('DEBUG: Fetched all jobs successfully. Total:', allJobs.length);
+        // console.log('DEBUG: Fetched all jobs successfully. Total:', allJobs.length);
         
         // 3. Find the specific job using client-side JavaScript
         // FIX: Use == (loose equality) instead of ===. This is crucial if 
@@ -59,14 +62,14 @@ onMounted(async () => {
         const foundJob = allJobs.find(job => job.id == jobId)
         
         // 4. DEBUG: Log the result of the find operation
-        console.log('DEBUG: Job found result:', foundJob);
+        // console.log('DEBUG: Job found result:', foundJob);
 
         if (foundJob) {
             // Assign the found job object to state.job
             state.job = foundJob
         } else {
             // If job not found, log error and notify user (optional redirect)
-            console.error(`ERROR: Job with ID ${jobId} not found in data.`);
+            // console.error(`ERROR: Job with ID ${jobId} not found in data.`);
             toast.error('Job not found!');
             // router.push('/not-found') 
         }

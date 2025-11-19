@@ -25,12 +25,28 @@
 
 <script setup>
 import logo from '../assets/logo.png'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 const route = useRoute()
 const dropdown = ref(false) // this is the state of the hamburger
+// const dropdownRef = ref(null)
 const toggleMenu = () => { // this func handles the toggle from false to true
   dropdown.value = !dropdown.value
+}
+onMounted(() => {
+  // document.addEventListener('keydown', handleKeyButton)
+  document.addEventListener('click', handleOutsideClick)
+})
+// const handleKeyButton = (event) => {
+//   if(event.key === 'Escape'){
+//       closeMenu()
+//     }
+// }
+const handleOutsideClick = () => {
+  if(dropdown.value){
+      closeMenu()
+      console.log('hi')
+    }
 }
 const closeMenu = () => { dropdown.value = false} // this handles the closing of the hamburger after being clicked.
 const isActive = (routePath) => {
