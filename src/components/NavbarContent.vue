@@ -43,7 +43,8 @@ onMounted(() => {
 //     }
 // }
 const handleOutsideClick = () => {
-  if(dropdown.value){
+  const confirm = window.confirm('suvccess')
+  if(dropdown.value && confirm){
       closeMenu()
       console.log('hi')
     }
